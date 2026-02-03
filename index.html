@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Prasanth S - Aspiring Software Engineer</title>
+    <meta name="description" content="The portfolio of Prasanth S, a final-year Information Technology student specializing in full-stack development and AI.">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://prasanth-s.netlify.app/">
+    <meta property="og:title" content="Prasanth S - Aspiring Software Engineer">
+    <meta property="og:description" content="The portfolio of Prasanth S, a final-year Information Technology student specializing in full-stack development and AI.">
+    <meta property="og:image" content="https://prasanth-s.netlify.app/assets/images/profile.jpg">
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://prasanth-s.netlify.app/">
+    <meta property="twitter:title" content="Prasanth S - Aspiring Software Engineer">
+    <meta property="twitter:description" content="The portfolio of Prasanth S, a final-year Information Technology student specializing in full-stack development and AI.">
+    <meta property="twitter:image" content="https://prasanth-s.netlify.app/assets/images/profile.jpg">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        html {
+            scroll-padding-top: 5rem;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a; /* slate-900 */
+            color: #cbd5e1; /* slate-300 */
+            line-height: 1.7;
+        }
+        .card {
+            background-color: #1e293b; /* slate-800 */
+            border: 1px solid #334155; /* slate-700 */
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            border-color: #34d399; /* emerald-400 */
+        }
+        .accent {
+            color: #34d399; /* emerald-400 */
+        }
+        .section-separator {
+            border-bottom: 1px solid #334155; /* slate-700 */
+            margin: 6rem 0;
+        }
+        .scroll-target {
+            scroll-margin-top: 5rem;
+        }
+        .animated-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .animated-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .sticky-nav {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: blur(10px);
+            background-color: rgba(15, 23, 42, 0.8);
+            transition: box-shadow 0.3s ease;
+            border-bottom: 1px solid #334155;
+        }
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #34d399;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+        .nav-link.active {
+            color: #34d399;
+        }
+        #mobile-menu a.active {
+            color: #34d399;
+            background-color: #334155;
+        }
+        .button-primary {
+            transition: transform 0.2s ease, filter 0.2s ease;
+        }
+        .button-primary:hover {
+            transform: scale(1.03);
+            filter: brightness(1.1);
+        }
+        .project-image-container {
+            border: 1px solid #334155;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover .project-image-container {
+            transform: scale(1.02);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <!-- STICKY NAV -->
+    <nav id="main-nav" class="sticky-nav">
+        <div class="container mx-auto px-6">
+            <div class="flex justify-between items-center h-20">
+                <a href="#home" class="text-2xl font-bold text-white">Prasanth S</a>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#expertise" class="nav-link text-slate-300 hover:text-emerald-400">Expertise</a>
+                    <a href="#projects" class="nav-link text-slate-300 hover:text-emerald-400">Projects</a>
+                    <a href="#research" class="nav-link text-slate-300 hover:text-emerald-400">Research</a>
+                    <a href="#toolkit" class="nav-link text-slate-300 hover:text-emerald-400">Toolkit</a>
+                    <a href="#certifications" class="nav-link text-slate-300 hover:text-emerald-400">Certifications</a>
+                    <a href="#contact" class="nav-link text-slate-300 hover:text-emerald-400">Contact</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-slate-300 hover:text-white focus:outline-none">
+                        <i class="fas fa-bars fa-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden">
+            <a href="#expertise" class="block py-2 px-4 text-sm text-slate-300 hover:bg-slate-700">Expertise</a>
+            <a href="#projects" class="block py-2 px-4 text-sm text-slate-300 hover:bg-slate-700">Projects</a>
+            <a href="#research" class="block py-2 px-4 text-sm text-slate-300 hover:bg-slate-700">Research</a>
+            <a href="#toolkit" class="block py-2 px-4 text-sm text-slate-300 hover:bg-slate-700">Toolkit</a>
+            <a href="#certifications" class="block py-2 px-4 text-sm text-slate-300 hover:bg-slate-700">Certifications</a>
+            <a href="#contact" class="block py-2 px-4 text-sm text-slate-300 hover:bg-slate-700">Contact</a>
+        </div>
+    </nav>
+
+    <!-- HEADER & HERO -->
+    <header id="home" class="container mx-auto px-6 py-24 md:py-32 flex flex-col md:flex-row items-center scroll-target">
+        <div class="md:w-3/5 text-center md:text-left">
+            <h1 class="text-4xl md:text-6xl font-bold text-white">Prasanth S</h1>
+            <h2 class="text-2xl md:text-3xl font-semibold accent mt-2">Aspiring Software Engineer</h2>
+            <p class="text-xl md:text-2xl text-slate-300 mt-4">“Solving Complex Problems with Software & AI”</p>
+            <p class="mt-6 text-slate-400 max-w-2xl mx-auto md:mx-0">
+                A final-year Information Technology student at MIT, Anna University, with a passion for building robust software solutions and exploring the frontiers of Artificial Intelligence. My work spans from full-stack web development to deep learning and complex data analysis, underscored by a solid foundation in computer science and a drive for impactful research.
+            </p>
+            <div class="mt-8 flex justify-center md:justify-start gap-4">
+                <a href="#projects" class="bg-emerald-500 text-white font-semibold px-6 py-3 rounded-lg hover:bg-emerald-600 transition-colors duration-300 button-primary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900 focus:ring-emerald-500">View My Work</a>
+                <a href="resume/Prasanth_Resume.pdf" target="_blank" class="border border-slate-600 text-slate-300 font-semibold px-6 py-3 rounded-lg hover:bg-slate-700 hover:text-white transition-colors duration-300 button-primary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900 focus:ring-emerald-500">View Resume</a>
+            </div>
+            <div class="mt-10 flex justify-center md:justify-start gap-6">
+                <a href="https://github.com/S-Prasanth-1511" target="_blank" class="text-slate-400 hover:text-emerald-400 transition-colors duration-300" aria-label="GitHub Profile">
+                    <i class="fab fa-github fa-2x"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/prasanth-s-6193ab257/" target="_blank" class="text-slate-400 hover:text-emerald-400 transition-colors duration-300" aria-label="LinkedIn Profile">
+                    <i class="fab fa-linkedin fa-2x"></i>
+                </a>
+            </div>
+        </div>
+        <div class="md:w-2/5 flex justify-center mt-12 md:mt-0">
+            <img src="assets/images/profile.jpg" alt="Prasanth S" class="w-64 h-64 md:w-80 md:h-80 rounded-full object-cover border-4 border-slate-700 shadow-2xl">
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6">
+
+        <!-- EXPERTISE -->
+        <section id="expertise" class="py-16 scroll-target animated-section">
+            <h2 class="text-4xl font-bold text-center text-white mb-16">Areas of Expertise</h2>
+            <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                <div class="card rounded-xl p-8 text-center">
+                    <i class="fas fa-brain fa-3x accent mb-6"></i>
+                    <h3 class="text-2xl font-bold text-white mb-3">AI & Machine Learning</h3>
+                    <p class="text-slate-400">Developing and implementing intelligent systems using CNNs, GANs, and Transformer models for tasks like computer vision, NLP, and anomaly detection.</p>
+                </div>
+                <div class="card rounded-xl p-8 text-center">
+                    <i class="fas fa-code fa-3x accent mb-6"></i>
+                    <h3 class="text-2xl font-bold text-white mb-3">Full-Stack Development</h3>
+                    <p class="text-slate-400">Building scalable, end-to-end web applications with a focus on robust back-end logic, secure data management, and responsive user interfaces.</p>
+                </div>
+                <div class="card rounded-xl p-8 text-center">
+                    <i class="fas fa-database fa-3x accent mb-6"></i>
+                    <h3 class="text-2xl font-bold text-white mb-3">Data-Driven Systems & Analytics</h3>
+                    <p class="text-slate-400">Designing systems that leverage data analytics, from processing pipelines to creating insightful summaries and visualizations, based on project experience with expense trackers and inventory analysis.</p>
+                </div>
+                <div class="card rounded-xl p-8 text-center">
+                    <i class="fas fa-sitemap fa-3x accent mb-6"></i>
+                    <h3 class="text-2xl font-bold text-white mb-3">System Design & Software Architecture (Academic & Project-Level)</h3>
+                    <p class="text-slate-400">Understanding of modular and scalable system architecture through multi-module applications (E-Notes, Inventory) and MVC-style web apps.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-separator"></div>
+
+        <!-- PROJECTS -->
+        <section id="projects" class="py-16 scroll-target animated-section">
+            <h2 class="text-4xl font-bold text-center text-white mb-20">Projects</h2>
+            <div class="space-y-28">
+                
+                <article class="card rounded-xl grid md:grid-cols-5 gap-12 items-center p-8">
+                    <div class="md:col-span-2 project-image-container rounded-xl">
+                        <img src="assets/images/e_notes.png" alt="E-Notes Management System" class="rounded-xl object-cover w-full h-full">
+                    </div>
+                    <div class="md:col-span-3 space-y-4">
+                        <div>
+                            <h3 class="text-2xl font-bold text-white">E-Notes Management System</h3>
+                            <div class="mt-2 flex flex-wrap gap-2">
+                                <span class="inline-block bg-emerald-900 text-emerald-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">Individual Project</span>
+                            </div>
+                        </div>
+                        <div class="text-slate-400 space-y-4">
+                            <p><strong>Problem:</strong> Students lack a centralized platform for managing and searching academic notes, leading to inefficient manual searches.</p>
+                            <p><strong>Solution:</strong> A web platform for uploading and organizing notes. The core feature is a semantic search engine using TF-IDF and Cosine Similarity to retrieve contextually relevant content, moving beyond simple keyword matching.</p>
+                            <p><strong>Tech Stack:</strong> Python, Flask, MySQL, NLTK, Scikit-learn, HTML/CSS.</p>
+                        </div>
+                        <div class="pt-2">
+                            <a href="https://github.com/S-Prasanth-1511/E-Notes-Management-System" target="_blank" class="text-emerald-400 hover:text-emerald-300 font-semibold">View on GitHub &rarr;</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="card rounded-xl grid md:grid-cols-5 gap-12 items-center p-8">
+                    <div class="md:col-span-3 space-y-4">
+                        <div>
+                            <h3 class="text-2xl font-bold text-white">Smart Inventory Management System</h3>
+                            <div class="mt-2 flex flex-wrap gap-2">
+                                <span class="inline-block bg-emerald-900 text-emerald-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">Individual Project</span>
+                            </div>
+                        </div>
+                        <div class="text-slate-400 space-y-4">
+                            <p><strong>Problem:</strong> Inefficient product tracking and employee oversight in a warehouse environment can lead to stockouts and coordination issues.</p>
+                            <p><strong>Solution:</strong> An enterprise web application for real-time inventory monitoring. It features role-based access for admins and employees, automated low-stock alerts, and personalized employee notifications to ensure operational efficiency.</p>
+                            <p><strong>Tech Stack:</strong> Java Servlets, JSP, MySQL, HTML/CSS.</p>
+                        </div>
+                        <div class="pt-2">
+                            <a href="https://github.com/S-Prasanth-1511/Smart-Inventory-Management-System" target="_blank" class="text-emerald-400 hover:text-emerald-300 font-semibold">View on GitHub &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="md:col-span-2 project-image-container rounded-xl">
+                        <img src="assets/images/inventory_system.png" alt="Smart Inventory Management System" class="rounded-xl object-cover w-full h-full">
+                    </div>
+                </article>
+
+                <article class="card rounded-xl grid md:grid-cols-5 gap-12 items-center p-8">
+                    <div class="md:col-span-2 project-image-container rounded-xl">
+                        <img src="assets/images/expense_tracker.png" alt="Smart Expense Tracker" class="rounded-xl object-cover w-full h-full">
+                    </div>
+                    <div class="md:col-span-3 space-y-4">
+                        <div>
+                            <h3 class="text-2xl font-bold text-white">Smart Expense Tracker</h3>
+                            <div class="mt-2 flex flex-wrap gap-2">
+                                <span class="inline-block bg-emerald-900 text-emerald-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">Individual Project</span>
+                            </div>
+                        </div>
+                        <div class="text-slate-400 space-y-4">
+                            <p><strong>Problem:</strong> A need for a user-friendly tool to monitor daily spending, track income, and set savings goals to improve financial awareness.</p>
+                            <p><strong>Solution:</strong> A web application with CRUD functionality for expenses and income. It provides powerful analysis tools like expense reports and pie charts to give users deep insights into their financial habits.</p>
+                            <p><strong>Tech Stack:</strong> Spring Boot, Spring Data JPA, MySQL, Thymeleaf, JavaScript, AJAX.</p>
+                        </div>
+                        <div class="pt-2">
+                            <a href="https://github.com/S-Prasanth-1511/Smart-Expense-Tracker" target="_blank" class="text-emerald-400 hover:text-emerald-300 font-semibold">View on GitHub &rarr;</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="card rounded-xl grid md:grid-cols-5 gap-12 items-center p-8">
+                    <div class="md:col-span-3 space-y-4">
+                        <h3 class="text-2xl font-bold text-white">Deep Fake Image Analysis</h3>
+                        <div class="mt-2 flex flex-wrap gap-2">
+                            <span class="inline-block bg-emerald-900 text-emerald-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">Individual Project</span>
+                            <span class="inline-block bg-blue-900 text-blue-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">Research Project</span>
+                        </div>
+                        <div class="text-slate-400 space-y-4">
+                            <p><strong>Problem:</strong> The rise of deepfake technology poses a significant threat of misinformation. A reliable detection tool is crucial.</p>
+                            <p><strong>Solution:</strong> A web application that uses a Convolutional Neural Network (CNN) to classify images as real or fake. The model focuses on analyzing subtle inconsistencies in the eye region, a common area for deepfake artifacts, using gradient-based analysis.</p>
+                            <p><strong>Tech Stack:</strong> Python, Flask, TensorFlow, Keras, OpenCV.</p>
+                        </div>
+                        <div class="pt-2">
+                            <a href="https://github.com/S-Prasanth-1511/Deep-Fake-Image-Analysis" target="_blank" class="text-emerald-400 hover:text-emerald-300 font-semibold">View on GitHub &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="md:col-span-2 project-image-container rounded-xl">
+                        <img src="assets/images/deepfake_image.png" alt="Deep Fake Image Analysis" class="rounded-xl object-cover w-full h-full">
+                    </div>
+                </article>
+
+                <article class="card rounded-xl grid md:grid-cols-5 gap-12 items-center p-8">
+                    <div class="md:col-span-2 project-image-container rounded-xl">
+                        <img src="assets/images/ehr_system.png" alt="Secure EHR System" class="rounded-xl object-cover w-full h-full">
+                    </div>
+                    <div class="md:col-span-3 space-y-4">
+                        <h3 class="text-2xl font-bold text-white">Secure EHR System with AI Anomaly Detection</h3>
+                        <div class="mt-2 flex flex-wrap gap-2">
+                            <span class="inline-block bg-indigo-900 text-indigo-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">Team Project</span>
+                        </div>
+                        <div class="text-slate-400 space-y-4">
+                            <p><strong>Problem:</strong> Traditional healthcare access controls are insufficient for secure, cross-organizational data sharing and lack robust insider threat detection.</p>
+                            <p><strong>Solution:</strong> A system combining Multi-Authority Attribute-Based Encryption (MA-ABE) for fine-grained access control with an AI engine that detects anomalous user behavior in real-time. The architecture uses a Flask backend, a cryptographic engine with the RW15 MA-ABE scheme, and an Isolation Forest model for anomaly detection.</p>
+                            <p><strong>Tech Stack:</strong> Python, Flask, SQLite, MA-ABE (charm-crypto), AES, scikit-learn.</p>
+                        </div>
+                        <div class="pt-2">
+                            <a href="https://github.com/S-Prasanth-1511/Secure-EHR-System" target="_blank" class="text-emerald-400 hover:text-emerald-300 font-semibold">View on GitHub &rarr;</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="card rounded-xl grid md:grid-cols-5 gap-12 items-center p-8">
+                    <div class="md:col-span-3 space-y-4">
+                        <h3 class="text-2xl font-bold text-white">Auditory Attention Decoding using EEG</h3>
+                        <div class="mt-2 flex flex-wrap gap-2">
+                            <span class="inline-block bg-indigo-900 text-indigo-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">Team Project</span>
+                            <span class="inline-block bg-blue-900 text-blue-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">Research Project</span>
+                        </div>
+                        <div class="text-slate-400 space-y-4">
+                            <p><strong>Problem:</strong> Decoding which auditory stream a person is paying attention to from multi-channel EEG signals is a complex challenge in Brain-Computer Interfaces.</p>
+                            <p><strong>Solution:</strong> This research project involved developing and evaluating models to decode auditory attention. It focused on EEG signal processing, feature extraction, and applying attention-based neural network models to classify the attended audio stream from the listener's brain activity.</p>
+                            <p><strong>Tech Stack:</strong> Python, Jupyter Notebook, EEG Signal Processing libraries.</p>
+                        </div>
+                        <div class="pt-2">
+                            <a href="https://github.com/NarenMasterofInfinity/Auditory-Attention-Decoding-using-EEG" target="_blank" class="text-emerald-400 hover:text-emerald-300 font-semibold">View on GitHub &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="md:col-span-2 project-image-container rounded-xl">
+                        <img src="assets/images/eeg_aad.png" alt="Auditory Attention Decoding using EEG" class="rounded-xl object-cover w-full h-full">
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <div class="section-separator"></div>
+
+        <!-- RESEARCH & PUBLICATIONS -->
+        <section id="research" class="py-16 scroll-target animated-section">
+            <h2 class="text-4xl font-bold text-center text-white mb-16">Research & Publications</h2>
+            <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                <div class="card rounded-xl p-8">
+                    <h3 class="text-xl font-bold text-white">ICCCNT 2025</h3>
+                    <p class="font-semibold text-emerald-400 mt-2 mb-4">Focus: Computer Vision, Deep Learning</p>
+                    <p class="text-slate-400">Presented research based on the Deep Fake Image Analysis project, detailing the CNN architecture and gradient-based eye region analysis for effective detection of AI-generated images.</p>
+                </div>
+                <div class="card rounded-xl p-8">
+                    <h3 class="text-xl font-bold text-white">SpringerNature 2025</h3>
+                    <p class="font-semibold text-emerald-400 mt-2 mb-4">Focus: EEG Signal Processing, Attention Models</p>
+                    <p class="text-slate-400">Co-authored a publication on decoding auditory attention from EEG signals. The work explores novel signal processing techniques and the application of attention mechanisms in neural networks to improve decoding accuracy.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-separator"></div>
+
+        <!-- TECHNICAL TOOLKIT -->
+        <section id="toolkit" class="py-16 scroll-target animated-section">
+            <h2 class="text-4xl font-bold text-center text-white mb-16">Technical Toolkit</h2>
+            <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-3 gap-8">
+                <div class="card rounded-xl p-8 text-center">
+                    <h3 class="text-lg font-semibold text-emerald-400 mb-3"><i class="fas fa-code mr-2"></i>Programming</h3>
+                    <p class="text-slate-400">C, C++, Python, Java</p>
+                </div>
+                <div class="card rounded-xl p-8 text-center">
+                    <h3 class="text-lg font-semibold text-emerald-400 mb-3"><i class="fas fa-laptop-code mr-2"></i>Web Development</h3>
+                    <p class="text-slate-400">HTML, CSS, JavaScript, PHP</p>
+                </div>
+                <div class="card rounded-xl p-8 text-center">
+                    <h3 class="text-lg font-semibold text-emerald-400 mb-3"><i class="fas fa-database mr-2"></i>Databases</h3>
+                    <p class="text-slate-400">MySQL, NoSQL</p>
+                </div>
+                <div class="card rounded-xl p-8 text-center">
+                    <h3 class="text-lg font-semibold text-emerald-400 mb-3"><i class="fas fa-brain mr-2"></i>AI & Data Science</h3>
+                    <p class="text-slate-400">CNN, GAN, Transformers, Data Analysis</p>
+                </div>
+                <div class="card rounded-xl p-8 text-center">
+                    <h3 class="text-lg font-semibold text-emerald-400 mb-3"><i class="fas fa-book mr-2"></i>Core CS Concepts</h3>
+                    <p class="text-slate-400">Data Structures & Algorithms, Operating Systems, DBMS, Computer Networks, OOPS</p>
+                </div>
+                 <div class="card rounded-xl p-8 text-center">
+                    <h3 class="text-lg font-semibold text-emerald-400 mb-3"><i class="fas fa-users mr-2"></i>Soft Skills</h3>
+                    <p class="text-slate-400">Leadership, Teamwork, Time Management, Event Coordination</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-separator"></div>
+
+        <!-- EDUCATION & EXPERIENCE -->
+        <section id="timeline" class="py-16 scroll-target animated-section">
+            <h2 class="text-4xl font-bold text-center text-white mb-16">Education & Experience</h2>
+            <div class="max-w-3xl mx-auto">
+                <div class="relative border-l-4 border-slate-700 space-y-12">
+                    <div class="pl-10 relative">
+                        <div class="absolute -left-3 top-1 w-6 h-6 bg-emerald-500 rounded-full border-4 border-slate-900"></div>
+                        <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                            <p class="text-sm text-slate-400">2022 – Present</p>
+                            <h3 class="text-xl font-bold text-white mt-1">B.Tech in Information Technology</h3>
+                            <p class="text-slate-300">Madras Institute of Technology, Anna University</p>
+                            <p class="text-slate-400 mt-1">CGPA: 8.41</p>
+                        </div>
+                    </div>
+                    <div class="pl-10 relative">
+                        <div class="absolute -left-3 top-1 w-6 h-6 bg-emerald-500 rounded-full border-4 border-slate-900"></div>
+                        <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                            <p class="text-sm text-slate-400">2025 – Present</p>
+                            <h3 class="text-xl font-bold text-white mt-1">Event Management Head</h3>
+                            <p class="text-slate-300">Computer Society of MIT</p>
+                        </div>
+                    </div>
+                    <div class="pl-10 relative">
+                        <div class="absolute -left-3 top-1 w-6 h-6 bg-emerald-500 rounded-full border-4 border-slate-900"></div>
+                        <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                            <p class="text-sm text-slate-400">2025</p>
+                            <h3 class="text-xl font-bold text-white mt-1">Research Paper Presentation</h3>
+                            <p class="text-slate-300">ICCCNT 2025</p>
+                        </div>
+                    </div>
+                    <div class="pl-10 relative">
+                        <div class="absolute -left-3 top-1 w-6 h-6 bg-emerald-500 rounded-full border-4 border-slate-900"></div>
+                        <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                            <p class="text-sm text-slate-400">2025</p>
+                            <h3 class="text-xl font-bold text-white mt-1">Research Paper Publication</h3>
+                            <p class="text-slate-300">SpringerNature</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-separator"></div>
+
+        <!-- ACHIEVEMENTS & LEADERSHIP -->
+        <section id="achievements" class="py-16 scroll-target animated-section">
+            <h2 class="text-4xl font-bold text-center text-white mb-16">Achievements & Leadership</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="card rounded-xl p-8">
+                    <h3 class="text-2xl font-bold text-white mb-6 text-center">Achievements</h3>
+                    <ul class="space-y-4 text-slate-300 list-disc list-inside">
+                        <li>Winner – Code in Chaos</li>
+                        <li>Winner – Block and Tackle</li>
+                        <li>Research Paper presented at ICCCNT 2025</li>
+                        <li>Research Paper published in SpringerNature 2025</li>
+                    </ul>
+                </div>
+                <div class="card rounded-xl p-8">
+                    <h3 class="text-2xl font-bold text-white mb-6 text-center">Leadership & Activities</h3>
+                     <ul class="space-y-4 text-slate-300 list-disc list-inside">
+                        <li>Event Management Head – Computer Society of MIT</li>
+                        <li>Event Management Team – Book Readers Club</li>
+                        <li>NSO Member</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-separator"></div>
+
+        <!-- CERTIFICATIONS -->
+        <section id="certifications" class="py-16 scroll-target animated-section">
+            <h2 class="text-4xl font-bold text-center text-white mb-16">Certifications</h2>
+            <div class="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <a href="https://drive.google.com/file/d/1H2QThe3k9VwjKs9glDlLJpqiGVDXAgU9/view?usp=sharing" target="_blank" class="card rounded-xl p-8 text-center block">
+                    <h3 class="text-xl font-bold text-white">Diploma in Computer Application (DCA)</h3>
+                </a>
+                <a href="https://drive.google.com/file/d/1rVw_FsBrRYJF9gpJnZ-a2lwMjG2pMBTx/view?usp=sharing" target="_blank" class="card rounded-xl p-8 text-center block">
+                    <h3 class="text-xl font-bold text-white">Business Communication Skills</h3>
+                </a>
+                <a href="https://drive.google.com/file/d/1P057vA9SnVQUXp-OWevlZqBP6WLN1phc/view?usp=sharing" target="_blank" class="card rounded-xl p-8 text-center block">
+                    <h3 class="text-xl font-bold text-white">Generative AI</h3>
+                </a>
+                <a href="https://drive.google.com/file/d/1m4IwoEFkxxYwDoR7RKygIhiRwsGquwX9/view?usp=sharing" target="_blank" class="card rounded-xl p-8 text-center block">
+                    <h3 class="text-xl font-bold text-white">Prompt Engineering</h3>
+                </a>
+                <a href="https://drive.google.com/file/d/1Dw-5n3R2cBBAOAUFE8IxeJOj6WdEAvSy/view?usp=sharing" target="_blank" class="card rounded-xl p-8 text-center block">
+                    <h3 class="text-xl font-bold text-white">Python Beginner to Master</h3>
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER / CONTACT -->
+    <footer id="contact" class="bg-slate-900/50 mt-24 py-16 text-center scroll-target">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-white mb-4">Get In Touch</h2>
+            <p class="text-slate-400 mb-8 max-w-xl mx-auto">I'm currently seeking new opportunities and am open to collaboration. Feel free to reach out.</p>
+            <p class="text-lg text-emerald-400 mb-2">
+                <a href="mailto:sprasanth151104@gmail.com" class="hover:text-emerald-300 transition-colors">sprasanth151104@gmail.com</a>
+            </p>
+            <div class="mt-8 flex justify-center gap-6">
+                <a href="https://github.com/S-Prasanth-1511" target="_blank" class="text-slate-400 hover:text-emerald-400 transition-colors duration-300" aria-label="GitHub Profile">
+                    <i class="fab fa-github fa-2x"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/prasanth-s-6193ab257/" target="_blank" class="text-slate-400 hover:text-emerald-400 transition-colors duration-300" aria-label="LinkedIn Profile">
+                    <i class="fab fa-linkedin fa-2x"></i>
+                </a>
+            </div>
+            <p class="text-slate-500 mt-12 text-sm">&copy; 2026 Prasanth S. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            mobileMenuLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+
+            const animatedSections = document.querySelectorAll('.animated-section');
+            const sectionObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            animatedSections.forEach(section => {
+                sectionObserver.observe(section);
+            });
+
+            const sections = document.querySelectorAll('.scroll-target');
+            const navLinks = document.querySelectorAll('.nav-link, #mobile-menu a');
+            const onScroll = () => {
+                let currentSectionId = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (window.scrollY >= sectionTop - 120) {
+                        currentSectionId = section.getAttribute('id');
+                    }
+                });
+
+                if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 2) {
+                    currentSectionId = sections[sections.length - 1].getAttribute('id');
+                }
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    const href = link.getAttribute('href');
+                    if (href && href.substring(1) === currentSectionId) {
+                        link.classList.add('active');
+                    }
+                });
+            };
+            window.addEventListener('scroll', onScroll);
+            onScroll(); // Run on page load
+        });
+    </script>
+</body>
+</html>
